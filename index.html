@@ -62,7 +62,20 @@
 // 1. Total Price of all products
 // Output: 256
 const task1 = () => {
-    return "";
+
+    let total = 0;
+
+    products.forEach((product) => {
+        let sum = 0;
+       
+         product.variants.forEach(variant => {
+            sum += variant.price;
+        });
+
+        total += sum;
+    });
+
+    return total;
 }
 
 // 2. Stock information only
@@ -72,7 +85,10 @@ const task1 = () => {
 // ]
 
 const task2 = () => {
-    return "";
+    let prod = products.map(({name , stock}) => {
+        return {name , stock}
+    });
+    return JSON.stringify(prod);
 }
 
 
@@ -81,14 +97,22 @@ const task2 = () => {
 // ["T-shirt", "Jeans", "Cap"]
 
 const task3 = () => {
-    return "";
+    return products.map(({name}) => {
+        return name
+    });;
 }
 
 // 4. T shirt green price
 // Output: 10
 
 const task4 = () => {
-    return "";
+    
+    prod = products.find((product) => { 
+        return product.name == "T-shirt";
+
+    });
+  
+    return prod.variants.find(v => v.title == "green").price;
 }
 
 document.querySelector("#ts1").innerHTML = task1();
